@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#e9e7df">
+<title>BlockTown — Build a little world.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <a class="brand" href="#"><span class="brand-mark">B<span>+</span></span><span>BLOCKTOWN<small>ISOMETRIC CITY BUILDER</small></span></a>
+    <div class="side-label">BUILD MENU</div>
+    <div class="category">TERRAIN & ROADS</div>
+    <div class="tool-grid">
+      <button class="tool active" data-tool="grass"><span class="tool-icon grass">▰</span>Grass</button>
+      <button class="tool" data-tool="road"><span class="tool-icon road">╱</span>Road</button>
+      <button class="tool" data-tool="water"><span class="tool-icon water">≈</span>Water</button>
+      <button class="tool" data-tool="park"><span class="tool-icon park">♣</span>Park</button>
+    </div>
+    <div class="category">BUILDINGS</div>
+    <div class="tool-grid">
+      <button class="tool" data-tool="house"><span class="tool-icon house">⌂</span>House</button>
+      <button class="tool" data-tool="apartment"><span class="tool-icon apartment">▥</span>Apartment</button>
+      <button class="tool" data-tool="shop"><span class="tool-icon shop">▣</span>Shop</button>
+      <button class="tool" data-tool="office"><span class="tool-icon office">▤</span>Office</button>
+    </div>
+    <div class="category">DETAILS</div>
+    <div class="tool-grid">
+      <button class="tool" data-tool="tree"><span class="tool-icon tree">♠</span>Tree</button>
+      <button class="tool" data-tool="lamp"><span class="tool-icon lamp">♧</span>Lamp</button>
+      <button class="tool" data-tool="fountain"><span class="tool-icon fountain">◉</span>Fountain</button>
+      <button class="tool" data-tool="erase"><span class="tool-icon erase">⌫</span>Eraser</button>
+    </div>
+    <div class="side-bottom">
+      <div class="save-status"><i></i><span id="save-status">SAVED LOCALLY</span></div>
+      <button class="side-action" id="new-city">＋ New city</button>
+      <button class="side-action" id="export-city">↓ Export city JSON</button>
+      <label class="side-action import-label">↑ Import city JSON<input id="import-city" type="file" accept="application/json"></label>
+      <button class="side-action" id="theme-toggle">◐ Switch appearance</button>
+      <div class="version">BLOCKTOWN / BUILD 001</div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div class="crumb">BLOCKTOWN <span>/</span> <strong>YOUR CITY</strong></div>
+      <div class="top-actions">
+        <button class="small-btn" id="clear-city">CLEAR MAP</button>
+        <button class="primary-btn" id="export-png">↓ EXPORT PNG</button>
+      </div>
+    </header>
+    <section class="content">
+      <div class="hero">
+        <div><div class="eyebrow"><i></i> A TINY WORLD, BUILT BY YOU</div><h1>Build your<br><em>own town.</em></h1><p>Pick a tile, place a building, and watch an empty patch of land turn into a little city.</p></div>
+        <div class="city-name-wrap"><label for="city-name">CITY NAME</label><input id="city-name" maxlength="28" value="Little Somewhere"><div class="city-tag">EST. 2026 / BLOCK 001</div></div>
+      </div>
+      <div class="workspace">
+        <section class="map-section">
+          <div class="section-head"><div><div class="eyebrow">ISOMETRIC BUILD AREA</div><h2>City canvas <span id="tile-count">144 TILES</span></h2></div><div class="map-controls"><button id="rotate-map" title="Rotate map">↻ ROTATE</button><button id="zoom-out">−</button><button id="zoom-in">＋</button></div></div>
+          <div class="canvas-frame">
+            <div class="canvas-topline"><span><i></i> LIVE WORLD VIEW</span><span id="active-tool-label">TOOL: GRASS</span></div>
+            <canvas id="city-canvas" width="1000" height="700" aria-label="Isometric city building canvas"></canvas>
+            <div class="canvas-footer"><span>CLICK A TILE TO BUILD</span><span>12 × 12 GRID</span></div>
+          </div>
+          <div class="map-hint"><b>HOW TO BUILD</b> Select a tool on the left, then tap any tile. Select the eraser to remove a tile's object. You can rotate the map to see your town from another angle.</div>
+        </section>
+        <aside class="stats-column">
+          <div class="panel-title">CITY REPORT <span>LIVE / 01</span></div>
+          <div class="stat-card population"><span>EST. POPULATION</span><strong id="population">0</strong><small>RESIDENTIAL CAPACITY</small></div>
+          <div class="stat-grid">
+            <div class="stat-card"><span>BUILDINGS</span><strong id="buildings">0</strong></div>
+            <div class="stat-card"><span>GREENERY</span><strong id="greenery">0</strong></div>
+            <div class="stat-card"><span>ROADS</span><strong id="roads">0</strong></div>
+            <div class="stat-card"><span>WATER</span><strong id="water">0</strong></div>
+          </div>
+          <div class="panel-title objectives-title">TOWN CHECKLIST <span>OPTIONAL</span></div>
+          <div class="checklist" id="checklist">
+            <div><span class="check" id="check-house">○</span> Build a home</div>
+            <div><span class="check" id="check-road">○</span> Connect a road</div>
+            <div><span class="check" id="check-park">○</span> Add a green space</div>
+            <div><span class="check" id="check-shop">○</span> Open a shop</div>
+          </div>
+          <div class="tip-card"><div class="tip-mark">!</div><div><b>DESIGN NOTE</b><p>Try grouping homes around a park, then connect the neighbourhood with roads.</p></div></div>
+        </aside>
+      </div>
+    </section>
+  </main>
+</div>
+<div id="toast" role="status"></div>
+<script src="script.js"></script>
+</body></html>
