@@ -1,30 +1,19 @@
-# BlockTown — Project 006
+# BLOCKTOWN 10
 
-A neo-brutalist isometric mini city builder made with vanilla HTML, CSS and JavaScript.
+A local-first isometric city-building game. No accounts, server, API keys, or build tools required.
 
-## Features
-- 12 × 12 isometric tile map
-- Terrain, roads, water, parks, houses, apartments, shops and offices
-- Decorative trees, lamps and fountains
-- Tile selection and eraser
-- Rotate map and zoom controls
-- City name and live city report
-- Optional town checklist
-- Local autosave
-- Export map as PNG
-- Export/import city as JSON
-- Light/dark appearance
-- Responsive layout
+## Run
+Open `index.html` in a modern browser, or upload all four files to a GitHub repository and enable GitHub Pages.
 
-## Run locally
-Open `index.html` in a modern browser. No build step required.
+## Included
+- Title screen, new game, continue, save slots, pause/resume, settings
+- 16×16 isometric city grid with 4 view rotations, zoom, grid and labels
+- 25+ placeable land, road, residential, commercial, civic and decorative items
+- Construction costs, starting budget, daily income/upkeep, population and happiness estimates
+- City report, milestones, service overview, day/season clock and 1×/2×/3× simulation speed
+- Undo/redo, bulldozer refund, autosave, quick save, 3 save slots
+- JSON import/export and PNG map export
+- Light/dark appearance, mobile layout, keyboard-friendly controls
 
-## GitHub Pages
-1. Create a repository named `blocktown`.
-2. Extract this ZIP and upload `index.html`, `style.css`, `script.js`, and `README.md` to the repository root.
-3. Commit the files.
-4. Open Settings → Pages.
-5. Select Deploy from a branch, choose `main` and `/ (root)`, then save.
-
-## Storage
-The current city is saved in localStorage in the current browser. Use Export city JSON to make a portable backup. It does not sync between devices.
+## Notes
+This is a self-contained browser game prototype. Economy, services and citizen metrics are intentionally lightweight simulation systems, not a real-world planning model. Saves remain in the browser's local storage; export JSON for a portable backup.
