@@ -1,4 +1,4 @@
-# BLOCKTOWN 10
+# BLOCKTOWN 10.2 — MOBILE + START FIX
 
 A local-first isometric city-building game. No accounts, server, API keys, or build tools required.
 
@@ -17,3 +17,7 @@ Open `index.html` in a modern browser, or upload all four files to a GitHub repo
 
 ## Notes
 This is a self-contained browser game prototype. Economy, services and citizen metrics are intentionally lightweight simulation systems, not a real-world planning model. Saves remain in the browser's local storage; export JSON for a portable backup.
+
+
+## Start screen reliability
+The main menu buttons include a small emergency screen-transition fallback, and the JavaScript URL is cache-busted. Replace all four files when updating the GitHub Pages deployment.

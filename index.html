@@ -25,7 +25,7 @@ body.dark{color-scheme:dark;--bg:#20211c;--paper:#292a24;--ink:#f2f0e6;--muted:#
 <body>
 <div id="title-screen" class="screen">
  <div class="title-top"><div class="brandmark">B<span>+</span></div><div>BLOCKTOWN <small>ISOMETRIC CITY SIMULATOR / VERSION 10.0</small></div><div class="title-build">A GAME ABOUT MAKING PLACES</div></div>
- <div class="title-content"><div class="title-copy"><div class="eyebrow">YOUR WORLD. YOUR RULES.</div><h1>SMALL<br><em>WORLD.</em><br>BIG IDEAS.</h1><p>Build neighbourhoods, shape skylines, keep citizens happy and turn a blank patch of land into somewhere worth living.</p><div class="title-buttons"><button class="btn primary" id="new-game">▶ NEW GAME</button><button class="btn" id="continue-game">CONTINUE</button><button class="btn" id="load-game">LOAD CITY</button></div><div class="title-foot">NO ACCOUNT · NO ADS · YOUR SAVES STAY ON THIS DEVICE</div></div><div class="title-art"><div class="art-label">YOUR NEXT GREAT CITY</div><div class="mini-city"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="art-caption">EST. TODAY / POP. ???</div></div></div>
+ <div class="title-content"><div class="title-copy"><div class="eyebrow">YOUR WORLD. YOUR RULES.</div><h1>SMALL<br><em>WORLD.</em><br>BIG IDEAS.</h1><p>Build neighbourhoods, shape skylines, keep citizens happy and turn a blank patch of land into somewhere worth living.</p><div class="title-buttons"><button class="btn primary" id="new-game" onclick="window.blocktownFallbackStart('new')">▶ NEW GAME</button><button class="btn" id="continue-game" onclick="window.blocktownFallbackStart('continue')">CONTINUE</button><button class="btn" id="load-game" onclick="window.blocktownFallbackStart('load')">LOAD CITY</button></div><div class="title-foot">NO ACCOUNT · NO ADS · YOUR SAVES STAY ON THIS DEVICE</div></div><div class="title-art"><div class="art-label">YOUR NEXT GREAT CITY</div><div class="mini-city"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="art-caption">EST. TODAY / POP. ???</div></div></div>
  <div class="title-bottom"><span>BLOCKTOWN STUDIOS</span><span>BUILD 10.0.0 / DESKTOP + MOBILE</span><button id="title-settings">SETTINGS ⚙</button></div>
 </div>
 <div id="game" class="hidden">
@@ -38,4 +38,16 @@ body.dark{color-scheme:dark;--bg:#20211c;--paper:#292a24;--ink:#f2f0e6;--muted:#
 <div id="settings-screen" class="screen modal-screen hidden"><div class="modal-box settings-box"><div class="modal-head"><div><div class="eyebrow">MAKE IT YOURS</div><h2>SETTINGS<span>.</span></h2></div><button class="x-btn" data-close="settings-screen">×</button></div><div class="settings-grid"><label>APPEARANCE<select id="setting-theme"><option value="light">Paper / light</option><option value="dark">Night / dark</option></select></label><label>MAP GRID<select id="setting-grid"><option value="on">Always on</option><option value="off">Hidden</option></select></label><label>LABELS<select id="setting-labels"><option value="off">Off</option><option value="on">On</option></select></label><label>GAME SPEED<select id="setting-speed"><option>1</option><option>2</option><option>3</option></select></label><label>SOUND<select id="setting-sound"><option>Off</option><option>On</option></select></label><label>ANIMATIONS<select id="setting-anim"><option>On</option><option>Reduced</option></select></label></div><p class="muted">Settings are saved on this device. Sound is currently reserved for a future audio pack.</p><button class="btn primary" data-close="settings-screen">DONE</button></div></div>
 <div id="dialog" class="screen modal-screen hidden"><div class="modal-box"><div class="modal-head"><div><div class="eyebrow" id="dialog-kicker">BLOCKTOWN</div><h2 id="dialog-title">CITY REPORT<span>.</span></h2></div><button class="x-btn" id="dialog-close">×</button></div><div id="dialog-content"></div></div></div>
 <div id="toast" role="status"></div><input id="import-file" type="file" accept="application/json" hidden>
-<script src="script.js"></script></body></html>
+<script>
+/* Emergency screen transition: keeps the game screen reachable if the main bundle fails to load. */
+window.blocktownFallbackStart = function(mode) {
+  var title = document.getElementById('title-screen');
+  var game = document.getElementById('game');
+  if (title) title.classList.add('hidden');
+  if (game) { game.classList.remove('hidden'); game.style.display = 'block'; }
+  document.documentElement.classList.add('blocktown-started');
+  var tip = document.getElementById('map-tip');
+  if (tip) tip.textContent = 'GAME SCREEN OPEN · If the city does not draw, reload after replacing all four files.';
+};
+</script>
+<script src="script.js?v=10.2"></script></body></html>
